@@ -42,4 +42,8 @@ blendEquationSeparate (WebGLRenderingContext gl) modeRGB modeAlpha =
 foreign import javascript unsafe "$1.blendEquationSeparate($2, $3)" js_blendEquationSeparate :: JSVal -> GLenum -> GLenum -> IO ()
 
 attachShader :: WebGLRenderingContextBase -> Maybe WebGLProgram -> Maybe WebGLShader -> IO ()
-attachShader (WebGL2RenderingContext gl)
+attachShader (WebGLRenderingContext gl) prog shader = js_attachShader
+
+maybeNull :: Maybe JSVal -> JSVal
+maybeNull Nothing = jsNull
+maybeNull (Just v) = v
